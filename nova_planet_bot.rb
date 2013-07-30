@@ -16,7 +16,10 @@ end
 title = ''
 artist = ''
 
-every :minute do
+File.open("currentArtist.txt", 'w') {|f| f.write('') }
+File.open("currentTitle.txt", 'w') {|f| f.write('') }
+
+while true
 
 	json = HTTParty.get('http://www.novaplanet.com/radionova/ontheair')
 
@@ -30,9 +33,15 @@ every :minute do
 
 	l_title = nokogiri_elements.css(".title").text.strip
 
+	artist = File.read('currentArtist.txt')
+	title = File.read('currentTitle.txt')
+
 	if l_artist != artist && l_title != title
 		title = l_title
 		artist = l_artist
+
+		File.open("currentArtist.txt", 'w') {|f| f.write('') }
+		File.open("currentTitle.txt", 'w') {|f| f.write('') }
 
 		#GMT
 		current_time = Time.now - 36000
@@ -40,7 +49,5 @@ every :minute do
 		Twitter.update("\"#{title}\" by #{artist} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT")
 	end
 
-end if defined?(Whenever)
-
-return unless __FILE__ == $PROGRAM_NAME
-
+	sleep(60)
+end
