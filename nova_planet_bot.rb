@@ -40,8 +40,8 @@ while true
 		title = l_title
 		artist = l_artist
 
-		File.open("currentArtist.txt", 'w') {|f| f.write('') }
-		File.open("currentTitle.txt", 'w') {|f| f.write('') }
+		File.open("currentArtist.txt", 'w') {|f| f.write(artist) }
+		File.open("currentTitle.txt", 'w') {|f| f.write(title) }
 
 		#GMT
 		current_time = Time.now - 36000
