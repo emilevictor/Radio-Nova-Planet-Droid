@@ -36,7 +36,7 @@ while true
 	artist = File.read('currentArtist.txt')
 	title = File.read('currentTitle.txt')
 
-	if l_artist != artist && l_title != title && title != "Titre non disponible"
+	if l_artist != artist && l_title != title && l_title != "Titre non disponible"
 		title = l_title
 		artist = l_artist
 
