@@ -47,6 +47,12 @@ while true
 		current_time = Time.now - 36000
 
 		Twitter.update("\"#{title}\" by #{artist} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT")
+		puts "\"#{title}\" by #{artist} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT"
+	else
+
+		puts "Didn't post: \"#{l_title}\" by #{l_artist} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT"
+
+
 	end
 
 	sleep(60)
