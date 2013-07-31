@@ -45,8 +45,11 @@ while true
 
 		#GMT
 		current_time = Time.now - 36000
-
-		Twitter.update("\"#{title}\" by #{artist.capitalize} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT")
+		begin
+			Twitter.update("\"#{title}\" by #{artist.capitalize} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT")
+		rescue
+			puts "Duplicate update."
+		end
 		puts "\"#{title}\" by #{artist.capitalize} played on Nova Planet FM at #{current_time.strftime("%H:%M %p")} GMT"
 	else
 		current_time = Time.now - 36000
